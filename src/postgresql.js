@@ -11,6 +11,12 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
       rejectUnauthorized: false,
     },
   },
+  pool: {
+    max: 10, // Maximum number of connection in the pool
+    min: 0, // Minimum number of connection in the pool
+    acquire: 30000, // Maximum time, in milliseconds, that a connection can be idle before being released
+    idle: 10000, // Maximum time, in milliseconds, that pool will try to get a connection before throwing error
+  },
 });
 
 const connection = async () => {

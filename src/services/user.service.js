@@ -9,7 +9,6 @@ const {
 
 const createUser = async (req, res) => {
   try {
-    return res.status(200).json({ message: req });
     const { username, displayName, email, password } = req.body;
 
     const isEmailUsed = await User.findOne({ where: { email } });

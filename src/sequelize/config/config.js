@@ -1,31 +1,62 @@
 require("dotenv").config();
 
-console.log("databaseUrl", process.env.DATABASE_URL);
-
 module.exports = {
   development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
+    username: process.env.DB_USER || "discord",
+    password: process.env.DB_PASSWORD || "oRakVRh5pnRc74qHOYxelt6aXNutZ6QG",
+    database: process.env.DB_NAME || "discord_b70e",
+    host:
+      process.env.DB_HOST ||
+      "dpg-csl8jvg8fa8c73bsns4g-a.oregon-postgres.render.com",
     dialect: "postgres",
-  },
-  test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    dialect: "postgres",
-  },
-  production: {
-    url: process.env.DATABASE_URL,
-    dialect: "postgres",
-    host: process.env.DB_HOST,
     dialectOptions: {
       ssl: {
         require: true,
         rejectUnauthorized: false,
       },
+    },
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+  },
+  test: {
+    username: process.env.DB_USER || "discord",
+    password: process.env.DB_PASSWORD || "oRakVRh5pnRc74qHOYxelt6aXNutZ6QG",
+    database: process.env.DB_NAME || "discord_b70e",
+    host:
+      process.env.DB_HOST ||
+      "dpg-csl8jvg8fa8c73bsns4g-a.oregon-postgres.render.com",
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+  },
+  production: {
+    use_env_variable: "DATABASE_URL", // Prefer using the DATABASE_URL directly in production
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
     },
   },
 };
