@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+console.log("databaseUrl", process.env.DATABASE_URL);
+
 module.exports = {
   development: {
     username: process.env.DB_USER,
@@ -18,5 +20,11 @@ module.exports = {
   production: {
     url: process.env.DATABASE_URL,
     dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
   },
 };
