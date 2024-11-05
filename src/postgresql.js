@@ -5,6 +5,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   protocol: "postgres",
   logging: console.log,
   dialectOptions: {
+    host: process.env.DB_HOST,
     ssl: {
       require: true,
       rejectUnauthorized: false,
