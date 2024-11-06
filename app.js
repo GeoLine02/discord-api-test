@@ -24,16 +24,17 @@ const io = new Server(server, {
   },
 });
 
-// Socket.IO handler
-const { socketHandler } = require("./src/socketIo");
-
-// Apply CORS middleware
 app.use(
   cors({
     origin: process.env.FRONT_END_URL, // Frontend URL (e.g., http://localhost:5173)
     credentials: true, // Allow cookies/credentials in CORS
   })
 );
+
+// Socket.IO handler
+const { socketHandler } = require("./src/socketIo");
+
+// Apply CORS middleware
 
 app.use(bodyParser.json());
 app.use(express.json());
