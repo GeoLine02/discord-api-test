@@ -59,7 +59,7 @@ const getUser = async (req, res) => {
     console.log(error);
   }
 };
-
+console.log("");
 const authorizeUser = async (req, res) => {
   try {
     const { email, password } = req.body;
