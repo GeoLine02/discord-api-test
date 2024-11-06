@@ -12,7 +12,6 @@ const {
   app: { port },
 } = require("./src/config/index");
 const connection = require("./src/postgresql");
-
 // Apply CORS middleware at the top for Express
 app.use(
   cors({

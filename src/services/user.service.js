@@ -73,8 +73,8 @@ const authorizeUser = async (req, res) => {
     const accessToken = await generateAccessToken(user);
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "Strict",
+      secure: true,
+      sameSite: "None",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
