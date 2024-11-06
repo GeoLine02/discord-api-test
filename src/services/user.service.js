@@ -87,6 +87,7 @@ const authorizeUser = async (req, res) => {
 
 const refreshAccessToken = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
+  console.log("refreshToken", refreshToken);
   if (!refreshToken) {
     return res.status(401).json({ message: "Refresh token required" });
   }
